@@ -1,16 +1,16 @@
-import { StyledLink } from './styled';
+import { StyledLink, List } from './styled';
 
 const Navigate = () => {
   return (
     <nav>
-      <ul>
+      <List>
         <li>
           <StyledLink to="/">Home</StyledLink>
         </li>
         <li>
           <StyledLink to="/movies">Movies</StyledLink>
         </li>
-      </ul>
+      </List>
     </nav>
   );
 };
