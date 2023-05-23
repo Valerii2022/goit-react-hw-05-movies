@@ -20,3 +20,9 @@ export const List = styled.ul`
   padding: 0;
   margin: 0;
 `;
+
+export const PageHeader = styled.header`
+  margin-bottom: 20px;
+  padding: 20px;
+  box-shadow: 0 3px 8px #0070ba;
+`;
