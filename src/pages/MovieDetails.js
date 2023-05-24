@@ -1,8 +1,16 @@
-import { useEffect, useState } from 'react';
-import { NavLink, Outlet, useParams } from 'react-router-dom';
+import { useEffect, useState, useRef } from 'react';
+import {
+  NavLink,
+  Outlet,
+  useParams,
+  Link,
+  useLocation,
+} from 'react-router-dom';
 import { fetchMovieDetails } from 'services/theMovieDB-API';
 
 const MovieDetails = () => {
+  const location = useLocation();
+  const backLinkLocationRef = useRef(location.state?.from ?? '/');
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
 
@@ -22,10 +30,16 @@ const MovieDetails = () => {
       {movieDetails && (
         <div>
           <div>
-            <img src={movieDetails.poster_path} alt={movieDetails.title} />
+            <Link to={backLinkLocationRef.current}>Go back</Link>
+            <img
+              src={`https://image.tmdb.org/t/p/original${movieDetails.poster_path}`}
+              alt={movieDetails.title}
+              width="300"
+            />
             <h1>
-              {movieDetails.title}({movieDetails.release_date})
+              {movieDetails.title}({movieDetails.release_date.slice(0, 4)})
             </h1>
+            <p>User Score {Math.round(movieDetails.vote_average * 10)}%</p>
             <h2>Overview</h2>
             <p>{movieDetails.overview}</p>
             <h3>Genres</h3>
