@@ -17,16 +17,24 @@ const MovieDetails = () => {
     })();
   }, [movieId]);
 
-  console.log(movieDetails);
-
   return (
     <>
       {movieDetails && (
         <div>
-          <img src={movieDetails.poster_path} alt={movieDetails.title} />
-          <h1>
-            {movieDetails.title}({movieDetails.release_date})
-          </h1>
+          <div>
+            <img src={movieDetails.poster_path} alt={movieDetails.title} />
+            <h1>
+              {movieDetails.title}({movieDetails.release_date})
+            </h1>
+            <h2>Overview</h2>
+            <p>{movieDetails.overview}</p>
+            <h3>Genres</h3>
+            <ul>
+              {movieDetails.genres.map(genre => {
+                return <li key={genre.id}>{genre.name}</li>;
+              })}
+            </ul>
+          </div>
           <ul>
             <li>
               <NavLink to={`/movies/${movieId}/cast`}>Cast</NavLink>

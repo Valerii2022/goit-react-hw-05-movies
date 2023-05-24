@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { fetchTrendingMovies } from 'services/theMovieDB-API';
 
 const Home = () => {
-  const [trendingMovies, setTrendingMovies] = useState(null);
+  const [trendingMovies, setTrendingMovies] = useState([]);
 
   useEffect(() => {
     (async () => {
