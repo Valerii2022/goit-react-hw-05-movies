@@ -9,18 +9,19 @@ const Movies = () => {
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const queryName = searchParams.get('query') ?? '';
-  const [searchMovies, setSearchMovies] = useState(null);
+  const [searchMovies, setSearchMovies] = useState([]);
+  const [currentQuery, setCurrentQuery] = useState(queryName);
+
+  console.log(searchMovies);
 
   const updateQueryName = evt => {
-    if (evt.target.value === '') {
-      return setSearchParams({});
-    }
-    setSearchParams({ query: evt.target.value });
+    setCurrentQuery(evt.target.value);
   };
 
   const findMoviesByQuery = async () => {
+    setSearchParams({ query: currentQuery });
     try {
-      const { data } = await fetchMovieSearch(queryName);
+      const { data } = await fetchMovieSearch(currentQuery);
       if (data.results.length === 0) {
         Notiflix.Notify.failure(
           'There are no movies matching you search query. Please try again.'
@@ -35,7 +36,7 @@ const Movies = () => {
 
   return (
     <Container>
-      <Input value={queryName} onChange={updateQueryName} type="text" />
+      <Input value={currentQuery} onChange={updateQueryName} type="text" />
       <SearchBtn type="submit" onClick={findMoviesByQuery}>
         Search
       </SearchBtn>
