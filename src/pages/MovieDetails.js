@@ -7,8 +7,9 @@ import {
   AboutMovieWrap,
   GenresList,
   BackLink,
+  BackLinkArrow,
 } from './MovieDetails.styled';
-import { ReactComponent as ArrowIcon } from '../icons/reshot-icon-arrow-left-CYVEH429PZ.svg';
+// import { ReactComponent as ArrowIcon } from '../icons/reshot-icon-arrow-left-CYVEH429PZ.svg';
 
 const MovieDetails = () => {
   const location = useLocation();
@@ -32,8 +33,10 @@ const MovieDetails = () => {
       {movieDetails && (
         <div>
           <BlockWrapper>
-            <ArrowIcon width="30" height="30" />
-            <BackLink to={backLinkLocationRef.current}>Go back</BackLink>
+            <BackLink to={backLinkLocationRef.current}>
+              <BackLinkArrow width="20" height="20" />
+              Go back
+            </BackLink>
             <MovieInfoWrap>
               <img
                 src={`https://image.tmdb.org/t/p/original${movieDetails.poster_path}`}
