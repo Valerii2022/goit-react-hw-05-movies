@@ -1,11 +1,12 @@
 import { useEffect, useState, useRef, Suspense } from 'react';
-import { Outlet, useParams, Link, useLocation } from 'react-router-dom';
+import { Outlet, useParams, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/theMovieDB-API';
 import { StyledLink, ListItem, List, BlockWrapper } from './Command.styled';
 import {
   MovieInfoWrap,
   AboutMovieWrap,
   GenresList,
+  BackLink,
 } from './MovieDetails.styled';
 
 const MovieDetails = () => {
@@ -30,7 +31,7 @@ const MovieDetails = () => {
       {movieDetails && (
         <div>
           <BlockWrapper>
-            <Link to={backLinkLocationRef.current}>Go back</Link>
+            <BackLink to={backLinkLocationRef.current}>Go back</BackLink>
             <MovieInfoWrap>
               <img
                 src={`https://image.tmdb.org/t/p/original${movieDetails.poster_path}`}
