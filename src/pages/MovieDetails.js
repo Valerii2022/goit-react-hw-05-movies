@@ -8,6 +8,7 @@ import {
   GenresList,
   BackLink,
 } from './MovieDetails.styled';
+import { ReactComponent as ArrowIcon } from '../icons/reshot-icon-arrow-left-CYVEH429PZ.svg';
 
 const MovieDetails = () => {
   const location = useLocation();
@@ -31,6 +32,7 @@ const MovieDetails = () => {
       {movieDetails && (
         <div>
           <BlockWrapper>
+            <ArrowIcon width="30" height="30" />
             <BackLink to={backLinkLocationRef.current}>Go back</BackLink>
             <MovieInfoWrap>
               <img

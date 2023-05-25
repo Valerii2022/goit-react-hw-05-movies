@@ -20,7 +20,7 @@ export const ListItem = styled.li`
   width: 300px;
 `;
 
-export const NameInfoWrapper = styled.p`
+export const NameInfoWrapper = styled.div`
   padding: 0 5px;
   display: flex;
   flex-direction: column;
