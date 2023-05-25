@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieCredits } from 'services/theMovieDB-API';
+import { Container, List, ListItem, Title, NameInfoWrapper } from './styled';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -18,24 +19,36 @@ const Cast = () => {
   }, [movieId]);
 
   return (
-    <div>
-      <ul>
+    <Container>
+      <List>
         {movieDetails &&
           movieDetails.map(cast => {
             return (
-              <li key={cast.id}>
+              <ListItem key={cast.id}>
                 <img
-                  src={`https://image.tmdb.org/t/p/original/${cast.profile_path}`}
+                  src={
+                    cast.profile_path
+                      ? `https://image.tmdb.org/t/p/original${cast.profile_path}`
+                      : `https://icon-library.com/images/no-photo-available-icon/no-photo-available-icon-14.jpg`
+                  }
                   alt={cast.name}
                   width="80"
+                  height="120"
                 />
-                <p>{cast.name}</p>
-                <p>{cast.character}</p>
-              </li>
+                <NameInfoWrapper>
+                  <Title>
+                    Name: <span>{cast.name}</span>
+                  </Title>
+
+                  <Title>
+                    Character: <span>{cast.character}</span>
+                  </Title>
+                </NameInfoWrapper>
+              </ListItem>
             );
           })}
-      </ul>
-    </div>
+      </List>
+    </Container>
   );
 };
 

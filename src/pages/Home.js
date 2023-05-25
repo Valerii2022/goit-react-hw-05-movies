@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import { fetchTrendingMovies } from 'services/theMovieDB-API';
+import { Container, List, StyledLink, ListItem } from './Command.styled';
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -17,19 +17,21 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <Container>
       <h1>Trending today</h1>
-      <ul>
+      <List>
         {trendingMovies &&
           trendingMovies.map(movie => {
             return (
-              <li key={movie.id}>
-                <NavLink to={`/movies/${movie.id}`}>{movie.title}</NavLink>
-              </li>
+              <ListItem key={movie.id}>
+                <StyledLink to={`/movies/${movie.id}`}>
+                  {movie.title}
+                </StyledLink>
+              </ListItem>
             );
           })}
-      </ul>
-    </div>
+      </List>
+    </Container>
   );
 };
 

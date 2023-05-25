@@ -22,7 +22,6 @@ export const List = styled.ul`
 `;
 
 export const PageHeader = styled.header`
-  margin-bottom: 20px;
   padding: 20px;
-  box-shadow: 0 3px 8px #0070ba;
+  box-shadow: 0 2px 8px #8e8e8e;
 `;

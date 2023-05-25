@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { fetchMovieSearch } from 'services/theMovieDB-API';
+import { Container, List, StyledLink, ListItem } from './Command.styled';
+import { Input, SearchBtn } from './Movies.styled';
 
 const Movies = () => {
   const location = useLocation();
@@ -25,24 +27,27 @@ const Movies = () => {
   };
 
   return (
-    <div>
-      <input value={queryName} onChange={updateQueryName} type="text" />
-      <button type="button" onClick={findMoviesByQuery}>
+    <Container>
+      <Input value={queryName} onChange={updateQueryName} type="text" />
+      <SearchBtn type="button" onClick={findMoviesByQuery}>
         Search
-      </button>
-      <ul>
+      </SearchBtn>
+      <List>
         {searchMovies &&
           searchMovies.map(movie => {
             return (
-              <li key={movie.id}>
-                <NavLink to={`/movies/${movie.id}`} state={{ from: location }}>
+              <ListItem key={movie.id}>
+                <StyledLink
+                  to={`/movies/${movie.id}`}
+                  state={{ from: location }}
+                >
                   {movie.title}
-                </NavLink>
-              </li>
+                </StyledLink>
+              </ListItem>
             );
           })}
-      </ul>
-    </div>
+      </List>
+    </Container>
   );
 };
 
