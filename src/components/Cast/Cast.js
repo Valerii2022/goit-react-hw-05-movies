@@ -11,7 +11,7 @@ const Cast = () => {
     (async () => {
       try {
         const { data } = await fetchMovieCredits(movieId);
-        setMovieDetails(data.cast);
+        if (data.cast.length !== 0) setMovieDetails(data.cast);
       } catch (error) {
         console.log(error);
       }
@@ -20,9 +20,9 @@ const Cast = () => {
 
   return (
     <Container>
-      <List>
-        {movieDetails &&
-          movieDetails.map(cast => {
+      {movieDetails ? (
+        <List>
+          {movieDetails.map(cast => {
             return (
               <ListItem key={cast.id}>
                 <img
@@ -47,7 +47,10 @@ const Cast = () => {
               </ListItem>
             );
           })}
-      </List>
+        </List>
+      ) : (
+        <Title>Sorry! No cast for this movie...</Title>
+      )}
     </Container>
   );
 };

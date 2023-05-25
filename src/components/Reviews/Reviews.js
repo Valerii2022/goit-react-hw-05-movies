@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieReviews } from 'services/theMovieDB-API';
-import { Title, List, ListItem } from './styled';
+import { Title, List, ListItem, Container } from './styled';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -11,7 +11,7 @@ const Reviews = () => {
     (async () => {
       try {
         const { data } = await fetchMovieReviews(movieId);
-        setMovieDetails(data.results);
+        if (data.results.length !== 0) setMovieDetails(data.results);
       } catch (error) {
         console.log(error);
       }
@@ -19,8 +19,8 @@ const Reviews = () => {
   }, [movieId]);
 
   return (
-    <div>
-      {movieDetails && (
+    <Container>
+      {movieDetails ? (
         <List>
           {movieDetails.map(review => {
             return (
@@ -31,8 +31,10 @@ const Reviews = () => {
             );
           })}
         </List>
+      ) : (
+        <Title>We don't have any reviews for this movie.</Title>
       )}
-    </div>
+    </Container>
   );
 };
 export default Reviews;

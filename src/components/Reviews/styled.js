@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
-export const List = styled.ul`
+export const Container = styled.div`
   padding: 20px;
+`;
+
+export const List = styled.ul`
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 10px;

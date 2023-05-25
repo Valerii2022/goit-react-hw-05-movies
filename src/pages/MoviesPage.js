@@ -1,3 +1,4 @@
+import Notiflix from 'notiflix';
 import { useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { fetchMovieSearch } from 'services/theMovieDB-API';
@@ -20,7 +21,13 @@ const Movies = () => {
   const findMoviesByQuery = async () => {
     try {
       const { data } = await fetchMovieSearch(queryName);
-      setSearchMovies(data.results);
+      if (data.results.length === 0) {
+        Notiflix.Notify.failure(
+          'There are no movies matching you search query. Please try again.'
+        );
+      } else {
+        setSearchMovies(data.results);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -29,7 +36,7 @@ const Movies = () => {
   return (
     <Container>
       <Input value={queryName} onChange={updateQueryName} type="text" />
-      <SearchBtn type="button" onClick={findMoviesByQuery}>
+      <SearchBtn type="submit" onClick={findMoviesByQuery}>
         Search
       </SearchBtn>
       <List>

@@ -9,7 +9,6 @@ import {
   BackLink,
   BackLinkArrow,
 } from './MovieDetails.styled';
-// import { ReactComponent as ArrowIcon } from '../icons/reshot-icon-arrow-left-CYVEH429PZ.svg';
 
 const MovieDetails = () => {
   const location = useLocation();
@@ -39,7 +38,11 @@ const MovieDetails = () => {
             </BackLink>
             <MovieInfoWrap>
               <img
-                src={`https://image.tmdb.org/t/p/original${movieDetails.poster_path}`}
+                src={
+                  movieDetails.poster_path
+                    ? `https://image.tmdb.org/t/p/original${movieDetails.poster_path}`
+                    : `https://icon-library.com/images/no-photo-available-icon/no-photo-available-icon-14.jpg`
+                }
                 alt={movieDetails.title}
                 width="300"
               />
