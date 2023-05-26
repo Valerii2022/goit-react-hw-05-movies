@@ -11,18 +11,26 @@ const Movies = () => {
   const queryName = searchParams.get('query') ?? '';
   const [searchMovies, setSearchMovies] = useState([]);
   const [currentQuery, setCurrentQuery] = useState(queryName);
+  const [loadingMovies, setLoadingMovies] = useState(false);
 
   useEffect(() => {
-    if (queryName !== '')
+    if (queryName !== '' && loadingMovies)
       (async () => {
         try {
           const { data } = await fetchMovieSearch(queryName);
+          if (data.results.length === 0) {
+            Notiflix.Notify.failure(
+              'There are no movies matching you search query. Please try again.'
+            );
+          }
           setSearchMovies(data.results);
         } catch (error) {
           console.log(error);
         }
       })();
-  }, [queryName]);
+
+    setLoadingMovies(true);
+  }, [loadingMovies, queryName]);
 
   const updateQueryName = evt => {
     setCurrentQuery(evt.target.value);
@@ -30,25 +38,17 @@ const Movies = () => {
 
   const findMoviesByQuery = async () => {
     setSearchParams({ query: currentQuery });
-    try {
-      const { data } = await fetchMovieSearch(currentQuery);
-      if (data.results.length === 0) {
-        setSearchMovies([]);
-        Notiflix.Notify.failure(
-          'There are no movies matching you search query. Please try again.'
-        );
-      } else {
-        setSearchMovies(data.results);
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    setLoadingMovies(true);
   };
 
   return (
     <Container>
       <Input value={currentQuery} onChange={updateQueryName} type="text" />
-      <SearchBtn type="submit" onClick={findMoviesByQuery}>
+      <SearchBtn
+        type="submit"
+        onClick={findMoviesByQuery}
+        disabled={currentQuery.trim() === ''}
+      >
         Search
       </SearchBtn>
       <List>
