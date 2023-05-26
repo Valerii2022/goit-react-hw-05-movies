@@ -1,5 +1,5 @@
 import Notiflix from 'notiflix';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { fetchMovieSearch } from 'services/theMovieDB-API';
 import { Container, List, StyledLink, ListItem } from './Command.styled';
@@ -12,7 +12,17 @@ const Movies = () => {
   const [searchMovies, setSearchMovies] = useState([]);
   const [currentQuery, setCurrentQuery] = useState(queryName);
 
-  console.log(searchMovies);
+  useEffect(() => {
+    if (queryName !== '')
+      (async () => {
+        try {
+          const { data } = await fetchMovieSearch(queryName);
+          setSearchMovies(data.results);
+        } catch (error) {
+          console.log(error);
+        }
+      })();
+  }, [queryName]);
 
   const updateQueryName = evt => {
     setCurrentQuery(evt.target.value);
@@ -41,19 +51,15 @@ const Movies = () => {
         Search
       </SearchBtn>
       <List>
-        {searchMovies &&
-          searchMovies.map(movie => {
-            return (
-              <ListItem key={movie.id}>
-                <StyledLink
-                  to={`/movies/${movie.id}`}
-                  state={{ from: location }}
-                >
-                  {movie.title}
-                </StyledLink>
-              </ListItem>
-            );
-          })}
+        {searchMovies.map(movie => {
+          return (
+            <ListItem key={movie.id}>
+              <StyledLink to={`/movies/${movie.id}`} state={{ from: location }}>
+                {movie.title}
+              </StyledLink>
+            </ListItem>
+          );
+        })}
       </List>
     </Container>
   );
