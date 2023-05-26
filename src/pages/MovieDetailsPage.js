@@ -1,7 +1,13 @@
 import { useEffect, useState, useRef, Suspense } from 'react';
 import { Outlet, useParams, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/theMovieDB-API';
-import { StyledLink, ListItem, List, BlockWrapper } from './Command.styled';
+import {
+  StyledLink,
+  ListItem,
+  List,
+  BlockWrapper,
+  Container,
+} from './Command.styled';
 import {
   MovieInfoWrap,
   AboutMovieWrap,
@@ -75,7 +81,13 @@ const MovieDetails = () => {
               </ListItem>
             </List>
           </BlockWrapper>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense
+            fallback={
+              <Container>
+                <div>Loading...</div>
+              </Container>
+            }
+          >
             <Outlet />
           </Suspense>
         </div>

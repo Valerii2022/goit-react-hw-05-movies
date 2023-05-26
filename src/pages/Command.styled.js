@@ -6,7 +6,6 @@ export const Container = styled.div`
 `;
 
 export const List = styled.ul`
-  list-style: square;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -21,12 +20,21 @@ export const ListItem = styled.li`
 `;
 
 export const StyledLink = styled(NavLink)`
+  display: inline-flex;
+  align-items: center;
+  gap:10px;
   color: black;
   text-decoration: none;
   transition: color 250ms linear;
   &:hover,
   &.active {
     color: #0070ba;
+  }
+  &::before{
+    content: "\";
+    width: 6px;
+    height: 6px;
+    background-color: currentColor;
   }
 `;
 

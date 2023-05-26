@@ -5,13 +5,14 @@ import { Container, List, ListItem, Title, NameInfoWrapper } from './styled';
 
 const Cast = () => {
   const { movieId } = useParams();
-  const [movieDetails, setMovieDetails] = useState(null);
+  const [movieDetails, setMovieDetails] = useState([]);
 
   useEffect(() => {
     (async () => {
       try {
         const { data } = await fetchMovieCredits(movieId);
-        if (data.cast.length !== 0) setMovieDetails(data.cast);
+        if (data.cast.length !== 0) return setMovieDetails(data.cast);
+        setMovieDetails(null);
       } catch (error) {
         console.log(error);
       }

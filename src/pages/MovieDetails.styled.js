@@ -39,6 +39,5 @@ export const BackLink = styled(Link)`
 
 export const BackLinkArrow = styled(ArrowIcon)`
 fill: currentColor;
-}
   }
 `;
