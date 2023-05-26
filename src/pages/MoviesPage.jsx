@@ -33,6 +33,7 @@ const Movies = () => {
     try {
       const { data } = await fetchMovieSearch(currentQuery);
       if (data.results.length === 0) {
+        setSearchMovies([]);
         Notiflix.Notify.failure(
           'There are no movies matching you search query. Please try again.'
         );
