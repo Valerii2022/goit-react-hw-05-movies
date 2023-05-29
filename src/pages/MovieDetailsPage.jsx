@@ -1,4 +1,3 @@
-import Notiflix from 'notiflix';
 import { useEffect, useState, useRef, Suspense } from 'react';
 import { Outlet, useParams, useLocation, Navigate } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/theMovieDB-API';
@@ -30,17 +29,10 @@ const MovieDetails = () => {
         const { data } = await fetchMovieDetails(movieId);
         setMovieDetails(data);
       } catch (error) {
-        handleError();
-        Notiflix.Notify.failure(
-          'There are no movies matching you search query. Please try again.'
-        );
+        setError(true);
       }
     })();
   }, [movieId]);
-
-  const handleError = () => {
-    setError(true);
-  };
 
   return (
     <>
