@@ -1,5 +1,6 @@
+import Notiflix from 'notiflix';
 import { useEffect, useState, useRef, Suspense } from 'react';
-import { Outlet, useParams, useLocation } from 'react-router-dom';
+import { Outlet, useParams, useLocation, Navigate } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/theMovieDB-API';
 import {
   StyledLink,
@@ -21,6 +22,7 @@ const MovieDetails = () => {
   const backLinkLocationRef = useRef(location.state?.from ?? '/');
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -28,13 +30,21 @@ const MovieDetails = () => {
         const { data } = await fetchMovieDetails(movieId);
         setMovieDetails(data);
       } catch (error) {
-        console.log(error);
+        handleError();
+        Notiflix.Notify.failure(
+          'There are no movies matching you search query. Please try again.'
+        );
       }
     })();
   }, [movieId]);
 
+  const handleError = () => {
+    setError(true);
+  };
+
   return (
     <>
+      {error && <Navigate to="/movies" />}
       {movieDetails && (
         <div>
           <BlockWrapper>
