@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react';
 import { fetchTrendingMovies } from 'services/theMovieDB-API';
-import { Container, List, StyledLink, ListItem, Image } from './Command.styled';
+import {
+  Container,
+  List,
+  StyledLink,
+  ListItem,
+  Image,
+  Title,
+} from './Command.styled';
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -18,7 +25,7 @@ const Home = () => {
 
   return (
     <Container>
-      <h1>Trending today</h1>
+      <Title>Trending today</Title>
       <List>
         {trendingMovies &&
           trendingMovies.map(movie => {
@@ -33,7 +40,6 @@ const Home = () => {
                     }
                     alt={movie.title}
                   />
-                  {/* {movie.title} */}
                 </StyledLink>
               </ListItem>
             );

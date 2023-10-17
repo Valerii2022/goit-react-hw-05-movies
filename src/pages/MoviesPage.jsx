@@ -56,7 +56,6 @@ const Movies = () => {
           return (
             <ListItem key={movie.id}>
               <StyledLink to={`/movies/${movie.id}`} state={{ from: location }}>
-                {/* {movie.title}  */}
                 <Image
                   src={
                     movie.poster_path

@@ -17,10 +17,11 @@ export const List = styled.ul`
   display: flex;
   padding: 0;
   margin: 0;
+  @media screen and (max-width: 767px) {
+    justify-content: space-between;
+  }
 `;
 
 export const PageHeader = styled.header`
-  max-width: 480px;
-  padding: 15px;
   box-shadow: 0 2px 8px #8e8e8e;
 `;
