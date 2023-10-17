@@ -27,6 +27,15 @@ const Home = () => {
                 <StyledLink to={`/movies/${movie.id}`}>
                   {movie.title}
                 </StyledLink>
+                <img
+                  width={'100px'}
+                  src={
+                    movie.poster_path
+                      ? `https://image.tmdb.org/t/p/original${movie.poster_path}`
+                      : `https://icon-library.com/images/no-photo-available-icon/no-photo-available-icon-14.jpg`
+                  }
+                  alt={movie.title}
+                />
               </ListItem>
             );
           })}
