@@ -2,7 +2,7 @@ import Notiflix from 'notiflix';
 import { useEffect, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { fetchMovieSearch } from 'services/theMovieDB-API';
-import { Container, List, StyledLink, ListItem } from './Command.styled';
+import { Container, List, StyledLink, ListItem, Image } from './Command.styled';
 import { Input, SearchBtn } from './Movies.styled';
 
 const Movies = () => {
@@ -56,7 +56,15 @@ const Movies = () => {
           return (
             <ListItem key={movie.id}>
               <StyledLink to={`/movies/${movie.id}`} state={{ from: location }}>
-                {movie.title}
+                {/* {movie.title}  */}
+                <Image
+                  src={
+                    movie.poster_path
+                      ? `https://image.tmdb.org/t/p/original${movie.poster_path}`
+                      : `https://icon-library.com/images/no-photo-available-icon/no-photo-available-icon-14.jpg`
+                  }
+                  alt={movie.title}
+                />
               </StyledLink>
             </ListItem>
           );

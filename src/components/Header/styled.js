@@ -12,8 +12,6 @@ export const StyledLink = styled(NavLink)`
   }
 `;
 
-export const listNav = styled.nav``;
-
 export const List = styled.ul`
   list-style: none;
   display: flex;
@@ -22,6 +20,7 @@ export const List = styled.ul`
 `;
 
 export const PageHeader = styled.header`
-  padding: 20px;
+  max-width: 480px;
+  padding: 15px;
   box-shadow: 0 2px 8px #8e8e8e;
 `;
