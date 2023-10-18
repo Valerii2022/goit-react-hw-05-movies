@@ -1,13 +1,7 @@
 import { useEffect, useState } from 'react';
 import { fetchTrendingMovies } from 'services/theMovieDB-API';
-import {
-  Container,
-  List,
-  StyledLink,
-  ListItem,
-  Image,
-  Title,
-} from './Command.styled';
+import { Container, List, ListItem, Image, Title } from './Command.styled';
+import { NavLink } from 'react-router-dom';
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -31,7 +25,7 @@ const Home = () => {
           trendingMovies.map(movie => {
             return (
               <ListItem key={movie.id}>
-                <StyledLink to={`/movies/${movie.id}`}>
+                <NavLink to={`/movies/${movie.id}`}>
                   <Image
                     src={
                       movie.poster_path
@@ -40,7 +34,7 @@ const Home = () => {
                     }
                     alt={movie.title}
                   />
-                </StyledLink>
+                </NavLink>
               </ListItem>
             );
           })}

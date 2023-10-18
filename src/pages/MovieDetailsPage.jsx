@@ -1,25 +1,20 @@
 import { useEffect, useState, useRef, Suspense } from 'react';
 import { Outlet, useParams, useLocation, Navigate } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/theMovieDB-API';
-import {
-  StyledLink,
-  ListItem,
-  List,
-  BlockWrapper,
-  Container,
-  Image,
-  Title,
-  ImgWrap,
-} from './Command.styled';
+import { BlockWrapper, Container, Title } from './Command.styled';
 import {
   MovieInfoWrap,
   AboutMovieWrap,
   GenresList,
   BackLink,
   BackLinkArrow,
+  Image,
   Text,
   Subtitle,
   GenresItem,
+  ListItem,
+  List,
+  StyledLink,
 } from './MovieDetails.styled';
 
 const MovieDetails = () => {
@@ -51,17 +46,15 @@ const MovieDetails = () => {
               Go back
             </BackLink>
             <MovieInfoWrap>
-              <ImgWrap>
-                <Image
-                  src={
-                    movieDetails.poster_path
-                      ? `https://image.tmdb.org/t/p/original${movieDetails.poster_path}`
-                      : `https://icon-library.com/images/no-photo-available-icon/no-photo-available-icon-14.jpg`
-                  }
-                  alt={movieDetails.title}
-                  width="300"
-                />
-              </ImgWrap>
+              <Image
+                src={
+                  movieDetails.poster_path
+                    ? `https://image.tmdb.org/t/p/original${movieDetails.poster_path}`
+                    : `https://icon-library.com/images/no-photo-available-icon/no-photo-available-icon-14.jpg`
+                }
+                alt={movieDetails.title}
+                width="300"
+              />
               <AboutMovieWrap>
                 <Title>
                   {movieDetails.title}({movieDetails.release_date.slice(0, 4)})
@@ -81,7 +74,7 @@ const MovieDetails = () => {
             </MovieInfoWrap>
           </BlockWrapper>
           <BlockWrapper>
-            <h3>Additional information</h3>
+            <Subtitle>Additional information</Subtitle>
             <List>
               <ListItem>
                 <StyledLink to={`/movies/${movieId}/cast`}>Cast</StyledLink>

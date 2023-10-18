@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
 
 export const Title = styled.h1`
   margin-bottom: 8px;
@@ -59,12 +58,6 @@ export const ListItem = styled.li`
   }
 `;
 
-export const ImgWrap = styled.div`
-  @media screen and (min-width: 768px) {
-    width: 50%;
-  }
-`;
-
 export const Image = styled.img`
   width: 100%;
   height: 100%;
@@ -76,26 +69,6 @@ export const Image = styled.img`
       filter: grayscale(0%);
     }
   }
-`;
-
-export const StyledLink = styled(NavLink)`
-  height: 100%;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: black;
-  text-decoration: none;
-  transition: color 250ms linear;
-  &:hover,
-  &.active {
-    color: #0070ba;
-  }
-  // &::before {
-  //   content: '';
-  //   width: 6px;
-  //   height: 6px;
-  //   background-color: currentColor;
-  // }
 `;
 
 export const BlockWrapper = styled.div`

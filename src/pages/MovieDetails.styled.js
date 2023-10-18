@@ -1,26 +1,41 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { ReactComponent as ArrowIcon } from '../icons/reshot-icon-arrow-left-CYVEH429PZ.svg';
 
 export const MovieInfoWrap = styled.div`
   display: flex;
   align-items: start;
   gap: 8px;
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 599px) {
     flex-direction: column;
-  }
-  @media screen and (min-width: 768px) {
     gap: 16px;
   }
 `;
 
-export const AboutMovieWrap = styled.div``;
+export const AboutMovieWrap = styled.div`
+  @media screen and (min-width: 600px) {
+    width: 60%;
+  }
+
+  @media screen and (min-width: 960px) {
+    width: 70%;
+  }
+  @media screen and (min-width: 1200px) {
+    width: 75%;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 80%;
+  }
+  @media screen and (min-width: 1920px) {
+    width: 90%;
+  }
+`;
 
 export const BackLink = styled(Link)`
   margin-bottom: 8px;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   border: 1px solid #8e8e8e;
   padding: 5px 10px;
   border-radius: 10px;
@@ -41,6 +56,25 @@ export const BackLink = styled(Link)`
 
 export const BackLinkArrow = styled(ArrowIcon)`
 fill: currentColor;
+  }
+`;
+
+export const Image = styled.img`
+  width: 100%;
+  @media screen and (min-width: 600px) {
+    width: 40%;
+  }
+  @media screen and (min-width: 960px) {
+    width: 30%;
+  }
+  @media screen and (min-width: 1200px) {
+    width: 25%;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 20%;
+  }
+  @media screen and (min-width: 1920px) {
+    width: 10%;
   }
 `;
 
@@ -75,5 +109,29 @@ export const GenresItem = styled.li`
     width: 4px;
     height: 4px;
     background-color: currentColor;
+  }
+`;
+
+export const List = styled.ul`
+  display: flex;
+  gap: 8px;
+`;
+
+export const ListItem = styled.li`
+  font-size: 18px;
+`;
+
+export const StyledLink = styled(NavLink)`
+  border: 1px solid #8e8e8e;
+  padding: 5px 10px;
+  border-radius: 10px;
+  background-color: #f0f0f0;
+  color: #000;
+  text-decoration: none;
+  transition: color 250ms linear, background-color 250ms linear;
+  &:hover,
+  &.active {
+    background-color: #0070ba;
+    color: #f0f0f0;
   }
 `;

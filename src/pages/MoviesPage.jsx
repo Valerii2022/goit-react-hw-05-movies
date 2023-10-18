@@ -1,8 +1,8 @@
 import Notiflix from 'notiflix';
 import { useEffect, useState } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
 import { fetchMovieSearch } from 'services/theMovieDB-API';
-import { Container, List, StyledLink, ListItem, Image } from './Command.styled';
+import { Container, List, ListItem, Image } from './Command.styled';
 import { Input, InputWrapper, SearchBtn } from './Movies.styled';
 
 const Movies = () => {
@@ -57,7 +57,7 @@ const Movies = () => {
         {searchMovies.map(movie => {
           return (
             <ListItem key={movie.id}>
-              <StyledLink to={`/movies/${movie.id}`} state={{ from: location }}>
+              <NavLink to={`/movies/${movie.id}`} state={{ from: location }}>
                 <Image
                   src={
                     movie.poster_path
@@ -66,7 +66,7 @@ const Movies = () => {
                   }
                   alt={movie.title}
                 />
-              </StyledLink>
+              </NavLink>
             </ListItem>
           );
         })}
