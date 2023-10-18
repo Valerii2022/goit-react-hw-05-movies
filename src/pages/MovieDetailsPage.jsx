@@ -1,19 +1,20 @@
 import { useEffect, useState, useRef, Suspense } from 'react';
 import { Outlet, useParams, useLocation, Navigate } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/theMovieDB-API';
-import {
-  StyledLink,
-  ListItem,
-  List,
-  BlockWrapper,
-  Container,
-} from './Command.styled';
+import { BlockWrapper, Container, Title } from './Command.styled';
 import {
   MovieInfoWrap,
   AboutMovieWrap,
   GenresList,
   BackLink,
   BackLinkArrow,
+  Image,
+  Text,
+  Subtitle,
+  GenresItem,
+  ListItem,
+  List,
+  StyledLink,
 } from './MovieDetails.styled';
 
 const MovieDetails = () => {
@@ -38,14 +39,14 @@ const MovieDetails = () => {
     <>
       {error && <Navigate to="/movies" />}
       {movieDetails && (
-        <div>
+        <Container>
           <BlockWrapper>
             <BackLink to={backLinkLocationRef.current}>
               <BackLinkArrow width="20" height="20" />
               Go back
             </BackLink>
             <MovieInfoWrap>
-              <img
+              <Image
                 src={
                   movieDetails.poster_path
                     ? `https://image.tmdb.org/t/p/original${movieDetails.poster_path}`
@@ -55,23 +56,25 @@ const MovieDetails = () => {
                 width="300"
               />
               <AboutMovieWrap>
-                <h1>
+                <Title>
                   {movieDetails.title}({movieDetails.release_date.slice(0, 4)})
-                </h1>
-                <p>User Score {Math.round(movieDetails.vote_average * 10)}%</p>
-                <h2>Overview</h2>
-                <p>{movieDetails.overview}</p>
-                <h3>Genres</h3>
+                </Title>
+                <Text>
+                  User Score {Math.round(movieDetails.vote_average * 10)}%
+                </Text>
+                <Subtitle>Overview</Subtitle>
+                <Text>{movieDetails.overview}</Text>
+                <Subtitle>Genres</Subtitle>
                 <GenresList>
                   {movieDetails.genres.map(genre => {
-                    return <li key={genre.id}>{genre.name}</li>;
+                    return <GenresItem key={genre.id}>{genre.name}</GenresItem>;
                   })}
                 </GenresList>
               </AboutMovieWrap>
             </MovieInfoWrap>
           </BlockWrapper>
           <BlockWrapper>
-            <h3>Additional information</h3>
+            <Subtitle>Additional information</Subtitle>
             <List>
               <ListItem>
                 <StyledLink to={`/movies/${movieId}/cast`}>Cast</StyledLink>
@@ -92,7 +95,7 @@ const MovieDetails = () => {
           >
             <Outlet />
           </Suspense>
-        </div>
+        </Container>
       )}
     </>
   );

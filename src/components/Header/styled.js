@@ -12,16 +12,16 @@ export const StyledLink = styled(NavLink)`
   }
 `;
 
-export const listNav = styled.nav``;
-
 export const List = styled.ul`
   list-style: none;
   display: flex;
   padding: 0;
   margin: 0;
+  @media screen and (max-width: 767px) {
+    justify-content: space-between;
+  }
 `;
 
 export const PageHeader = styled.header`
-  padding: 20px;
   box-shadow: 0 2px 8px #8e8e8e;
 `;
