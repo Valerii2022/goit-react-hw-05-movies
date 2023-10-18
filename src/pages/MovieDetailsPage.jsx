@@ -7,6 +7,9 @@ import {
   List,
   BlockWrapper,
   Container,
+  Image,
+  Title,
+  ImgWrap,
 } from './Command.styled';
 import {
   MovieInfoWrap,
@@ -14,6 +17,9 @@ import {
   GenresList,
   BackLink,
   BackLinkArrow,
+  Text,
+  Subtitle,
+  GenresItem,
 } from './MovieDetails.styled';
 
 const MovieDetails = () => {
@@ -38,33 +44,37 @@ const MovieDetails = () => {
     <>
       {error && <Navigate to="/movies" />}
       {movieDetails && (
-        <div>
+        <Container>
           <BlockWrapper>
             <BackLink to={backLinkLocationRef.current}>
               <BackLinkArrow width="20" height="20" />
               Go back
             </BackLink>
             <MovieInfoWrap>
-              <img
-                src={
-                  movieDetails.poster_path
-                    ? `https://image.tmdb.org/t/p/original${movieDetails.poster_path}`
-                    : `https://icon-library.com/images/no-photo-available-icon/no-photo-available-icon-14.jpg`
-                }
-                alt={movieDetails.title}
-                width="300"
-              />
+              <ImgWrap>
+                <Image
+                  src={
+                    movieDetails.poster_path
+                      ? `https://image.tmdb.org/t/p/original${movieDetails.poster_path}`
+                      : `https://icon-library.com/images/no-photo-available-icon/no-photo-available-icon-14.jpg`
+                  }
+                  alt={movieDetails.title}
+                  width="300"
+                />
+              </ImgWrap>
               <AboutMovieWrap>
-                <h1>
+                <Title>
                   {movieDetails.title}({movieDetails.release_date.slice(0, 4)})
-                </h1>
-                <p>User Score {Math.round(movieDetails.vote_average * 10)}%</p>
-                <h2>Overview</h2>
-                <p>{movieDetails.overview}</p>
-                <h3>Genres</h3>
+                </Title>
+                <Text>
+                  User Score {Math.round(movieDetails.vote_average * 10)}%
+                </Text>
+                <Subtitle>Overview</Subtitle>
+                <Text>{movieDetails.overview}</Text>
+                <Subtitle>Genres</Subtitle>
                 <GenresList>
                   {movieDetails.genres.map(genre => {
-                    return <li key={genre.id}>{genre.name}</li>;
+                    return <GenresItem key={genre.id}>{genre.name}</GenresItem>;
                   })}
                 </GenresList>
               </AboutMovieWrap>
@@ -92,7 +102,7 @@ const MovieDetails = () => {
           >
             <Outlet />
           </Suspense>
-        </div>
+        </Container>
       )}
     </>
   );

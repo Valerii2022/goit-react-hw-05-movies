@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { fetchMovieSearch } from 'services/theMovieDB-API';
 import { Container, List, StyledLink, ListItem, Image } from './Command.styled';
-import { Input, SearchBtn } from './Movies.styled';
+import { Input, InputWrapper, SearchBtn } from './Movies.styled';
 
 const Movies = () => {
   const location = useLocation();
@@ -43,14 +43,16 @@ const Movies = () => {
 
   return (
     <Container>
-      <Input value={currentQuery} onChange={updateQueryName} type="text" />
-      <SearchBtn
-        type="submit"
-        onClick={findMoviesByQuery}
-        disabled={currentQuery.trim() === ''}
-      >
-        Search
-      </SearchBtn>
+      <InputWrapper>
+        <Input value={currentQuery} onChange={updateQueryName} type="text" />
+        <SearchBtn
+          type="submit"
+          onClick={findMoviesByQuery}
+          disabled={currentQuery.trim() === ''}
+        >
+          Search
+        </SearchBtn>
+      </InputWrapper>
       <List>
         {searchMovies.map(movie => {
           return (

@@ -1,10 +1,16 @@
 import styled from 'styled-components';
 
+export const InputWrapper = styled.div`
+  width: 100%;
+  margin-bottom: 16px;
+  display: flex;
+  gap: 8px;
+`;
+
 export const Input = styled.input`
+  width: calc(100% - 78px);
   font-size: 18px;
   padding: 5px;
-  margin-bottom: 20px;
-  margin-right: 10px;
   border-radius: 3px;
   outline: none;
   border: 1px solid #000;
@@ -12,9 +18,13 @@ export const Input = styled.input`
     border: 1px solid #0070ba;
     box-shadow: 0 0 2px #0070ba;
   }
+  @media screen and (min-width: 768px) {
+    width: 338px;
+  }
 `;
 
 export const SearchBtn = styled.button`
+  width: 70px;
   font-size: 18px;
   padding: 5px;
   cursor: pointer;

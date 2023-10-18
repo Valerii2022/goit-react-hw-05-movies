@@ -2,27 +2,30 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const Title = styled.h1`
+  margin-bottom: 8px;
   @media screen and (max-width: 767px) {
-    text-align: center;
+    font-size: 24px;
+  }
+  @media screen and (min-width: 768px) {
+    margin-bottom: 16px;
   }
 `;
 
 export const Container = styled.div`
   width: 100%;
-  margin: 0;
-  padding: 15px;
+  padding: 16px;
   margin: 0 auto;
   @media screen and (min-width: 480px) {
-    width: 450px;
+    min-width: 448px;
   }
   @media screen and (min-width: 768px) {
-    width: 738px;
+    min-width: 736px;
   }
   @media screen and (min-width: 1440px) {
-    width: 1410px;
+    min-width: 1408px;
   }
   @media screen and (min-width: 1920px) {
-    width: 1890px;
+    min-width: 1888px;
   }
 `;
 
@@ -53,6 +56,12 @@ export const ListItem = styled.li`
   }
   @media screen and (min-width: 1920px) {
     width: calc((100% - 80px) / 6);
+  }
+`;
+
+export const ImgWrap = styled.div`
+  @media screen and (min-width: 768px) {
+    width: 50%;
   }
 `;
 
@@ -90,6 +99,10 @@ export const StyledLink = styled(NavLink)`
 `;
 
 export const BlockWrapper = styled.div`
-  box-shadow: 0 2px 4px #8e8e8e;
-  padding: 20px;
+  box-shadow: 0 0 4px #8e8e8e;
+  border-radius: 4px;
+  padding: 16px;
+  &:first-child {
+    margin-bottom: 16px;
+  }
 `;
