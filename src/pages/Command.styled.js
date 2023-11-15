@@ -32,6 +32,7 @@ export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
+  margin-bottom: 50px;
   @media screen and (min-width: 360px) {
     gap: 8px;
   }
@@ -77,5 +78,24 @@ export const BlockWrapper = styled.div`
   padding: 16px;
   &:first-child {
     margin-bottom: 16px;
+  }
+`;
+
+export const Button = styled.button`
+  font-size: 22px;
+  font-weight: 700;
+  border: 2px solid #0070ba;
+  background-color: #fff;
+  color: #0070ba;
+  display: block;
+  margin: 0 auto 50px auto;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 3px;
+  padding: 8px 16px;
+  transition: background-color 250ms linear, color 250ms linear;
+  &:hover {
+    color: #fff;
+    background-color: #0070ba;
   }
 `;
