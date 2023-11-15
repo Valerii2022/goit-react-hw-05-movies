@@ -12,7 +12,7 @@ import { NavLink } from 'react-router-dom';
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
-  const [page, setPage] = useState(498);
+  const [page, setPage] = useState(2);
   const [hideBtn, setHideBtn] = useState(true);
 
   useEffect(() => {
